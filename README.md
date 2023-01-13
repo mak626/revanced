@@ -1,9 +1,15 @@
-# ReVanced Extended Magisk Module
+# Customized ReVanced Extended
 
 [![Build Modules](https://github.com/mak626/revanced/actions/workflows/build.yml/badge.svg)](https://github.com/mak626/revanced/actions/workflows/build.yml)
 [![CI](https://github.com/mak626/revanced/actions/workflows/ci.yml/badge.svg?event=schedule)](https://github.com/mak626/revanced/actions/workflows/ci.yml)
 
 Get the [latest Youtube Revanced](https://github.com/mak626/revanced/releases).
+
+## Sources
+- [Revanced Extended Patches](https://github.com/inotia00/revanced-patches)
+- [Revanced Extended Integrations](https://github.com/inotia00/revanced-integrations)
+- [Revanced CLI](https://github.com/j-hc/revanced-cli)
+- [Magisk](https://github.com/j-hc/revanced-magisk-module)
 
 ## Building Locally
 

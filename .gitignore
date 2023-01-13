@@ -1,0 +1,12 @@
+*.jar
+*.apk
+*.zip
+/revanced-cache
+/temp
+/build
+build.md
+/test
+cmpr
+test.toml
+node_modules
+*.log

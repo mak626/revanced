@@ -1,6 +1,8 @@
 {
     "excluded": [
+        "custom-branding-icon-afn-blue",
         "custom-branding-icon-afn-red",
+        "custom-branding-icon-revancify",
         "custom-branding-name",
         "custom-video-buffer",
         "enable-wide-searchbar",
@@ -8,14 +10,11 @@
         "hide-comment-component",
         "hide-shorts-button",
         "hide-shorts-component",
+        "materialyou",
         "return-youtube-dislike",
-        "translations",
-        "custom-branding-icon-afn-blue",
-        "custom-branding-icon-revancify",
-        "materialyou"
+        "translations"
     ],
     "included": [
-        "force-premium-heading",
         "client-spoof",
         "custom-seekbar-color",
         "custom-video-speed",
@@ -29,6 +28,7 @@
         "enable-open-links-directly",
         "enable-seekbar-tapping",
         "enable-tablet-miniplayer",
+        "force-premium-heading",
         "header-switch",
         "hide-auto-captions",
         "hide-auto-player-popup-panels",

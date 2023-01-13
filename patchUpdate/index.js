@@ -1,9 +1,9 @@
-const repo =
-  "https://api.github.com/repos/inotia00/revanced-patches/releases/latest";
-
 const savePatches = require("./config.json");
 const fs = require("fs");
 const fetch = require("node-fetch");
+
+const repo =
+  "https://api.github.com/repos/inotia00/revanced-patches/releases/latest";
 
 const checkPatch = async () => {
   const repoDownload = await fetch(repo);
@@ -16,11 +16,11 @@ const checkPatch = async () => {
 
   const patches = await (await fetch(patch_url)).json();
 
-  const oldExclude = savePatches.exclude;
-  const oldInclude = savePatches.include;
+  const oldExclude = savePatches.exclude.sort();
+  const oldInclude = savePatches.include.sort();
 
-  const excluded = [];
-  const included = [];
+  let excluded = [];
+  let included = [];
 
   patches.forEach((e) => {
     if (
@@ -33,6 +33,9 @@ const checkPatch = async () => {
       }
     }
   });
+
+  excluded = excluded.sort();
+  included = included.sort();
 
   oldExclude.forEach((e) => {
     if (!included.find((_e) => e === _e)) {
@@ -69,13 +72,13 @@ const checkPatch = async () => {
             ...oldExclude,
             ...excluded.filter((e) => !oldInclude.includes(e)),
           ])
-        ),
+        ).sort(),
         included: Array.from(
           new Set([
             ...oldInclude,
             ...included.filter((e) => !oldExclude.includes(e)),
           ])
-        ),
+        ).sort(),
       },
       null,
       4

@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "node-fetch": "^2.6.8"
+  },
+  "scripts": {
+    "run": "node ./patchUpdate/index.js"
   }
 }

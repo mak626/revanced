@@ -6,6 +6,11 @@ parallel-jobs = 3             # max number of concurrent building jobs
 update-prebuilts = true       # dont touch this
 build-mindetach-module = true
 
+[Music-arm64]
+enabled = false
+
+[Music-arm]
+enabled = false
 
 [YouTube]
 enabled = true                                                        # add 'enabled = false' key to entries to not build them
@@ -18,9 +23,3 @@ module-prop-name = "ytrv-mak-magisk"
 merge-integrations = true
 excluded-patches = "custom-branding-icon-afn-red custom-branding-name custom-video-buffer enable-wide-searchbar hide-cast-button hide-comment-component hide-shorts-button hide-shorts-component return-youtube-dislike translations"
 included-patches = "force-premium-heading"
-
-[Music-arm64]
-enabled = false
-
-[Music-arm]
-enabled = false

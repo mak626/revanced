@@ -1,4 +1,6 @@
 {
+  "name": "youtube-revanced-patch-checker",
+  "author": "M Aswin Kishore",
   "dependencies": {
     "node-fetch": "^2.6.8"
   },

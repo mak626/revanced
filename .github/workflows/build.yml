@@ -87,7 +87,7 @@ jobs:
             VER=$(echo "$ZIP_S" | grep version=)
             VER="${VER##*=}"
             DLURL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}/${OUTPUT}"
-            get_update_json "$VER" "${{ steps.next_ver_code.outputs.NEXT_VER_CODE}}" "$DLURL" "$CHANGELOG_URL" >"../$UPDATE_JSON"
+            get_update_json "$VER" "${{ steps.next_ver_code.outputs.NEXT_VER_CODE}}" "$DLURL" "$CHANGELOG_URL" > "../$UPDATE_JSON"
           done
           cd ..
 
@@ -106,15 +106,14 @@ jobs:
           TG_CHAT: ${{ secrets.TG_CHAT }}
         if: env.TG_TOKEN != null
         run: |
-          json_get() { grep -o "\"${1}\":[^\"]*\"[^\"]*\"" | sed -E 's/".*".*"(.*)"/\1/'; }
-          gh_req() { wget -nv -O "$2" --header="$GH_AUTH_HEADER" "$1"; }
-
           cd build || echo "build folder not found"
           NL=$'\n'
           APKS=""
           MODULES=""
+          BODY="$(cat ../build.md | sed 's/\* \*\*/↪ \*\*/g; s/\*\*/\*/g; s/###//g')"
+          BODY+="${NL}[Repository]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases)"
 
-          for OUTPUT in *revanced*; do
+          for OUTPUT in *; do
             DL_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}/${OUTPUT}"
             if [[ $OUTPUT = *.apk ]]; then
               APKS+="${NL}📦[${OUTPUT}](${DL_URL})"
@@ -123,12 +122,11 @@ jobs:
             fi
           done
 
-          for OUTPUT in *mindetach*; do
-            DL_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}/${OUTPUT}"
-            if [[ $OUTPUT = *.zip ]]; then
-              MODULES+="${NL}📦[${OUTPUT}](${DL_URL})"
-            fi
-          done
+          # Go Back to main to get utils.sh
+          cd ..
+          git checkout -f main || git switch --discard-changes --orphan main
+
+          source utils.sh
 
           MICRO_G=$(gh_req https://api.github.com/repos/inotia00/VancedMicroG/releases/latest -)
           MICRO_G_URL=$(echo "$MICRO_G" | json_get 'browser_download_url' | grep 'apk')
@@ -137,7 +135,6 @@ jobs:
           MODULES=${MODULES#"$NL"}
           APKS=${APKS#"$NL"}
 
-          BODY="$(cat ../build.md | sed 's/\* \*\*/↪ \*\*/g; s/\*\*/\*/g; s/###//g')"
           MSG="*New build!*
           *${{steps.get_output.outputs.RELEASE_NAME}}*
 

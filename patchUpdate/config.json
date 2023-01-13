@@ -1,0 +1,17 @@
+{
+    "exclude": [
+        "custom-branding-icon-afn-red",
+        "custom-branding-name",
+        "custom-video-buffer",
+        "enable-wide-searchbar",
+        "hide-cast-button",
+        "hide-comment-component",
+        "hide-shorts-button",
+        "hide-shorts-component",
+        "return-youtube-dislike",
+        "translations"
+    ],
+    "include": [
+        "force-premium-heading"
+    ]
+}

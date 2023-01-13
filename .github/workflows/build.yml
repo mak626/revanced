@@ -42,7 +42,7 @@ jobs:
 
           cd build
           yt_op=$(find . -maxdepth 1 -name "youtube-revanced-magisk-*.zip" -printf '%P')
-          yt_op=$(echo "Youtube Revanced Extended $yt_op" | sed "s/youtube-revanced-magisk-//" | sed "s/-all.zip//")
+          yt_op=$(echo "$yt_op" | sed "s/youtube-revanced-magisk-//" | sed "s/-all.zip//")
           if [ -z "$yt_op" ]; then
             echo "RELEASE_NAME=ReVanced" >> $GITHUB_OUTPUT
           else
@@ -109,6 +109,7 @@ jobs:
           cd build || echo "build folder not found"
 
           NL=$'\n'
+          
           APKS=""
           MODULES=""
           for OUTPUT in *revanced*; do
@@ -119,6 +120,18 @@ jobs:
               MODULES+="${NL}📦[${OUTPUT}](${DL_URL})"
             fi
           done
+
+          for OUTPUT in *mindetach*; do
+            DL_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}/${OUTPUT}"
+            if [[ $OUTPUT = *.zip ]]; then
+              MODULES+="${NL}📦[${OUTPUT}](${DL_URL})"
+            fi
+          done
+
+          MICRO_G=$(gh_req https://api.github.com/repos/inotia00/VancedMicroG/releases/latest -)
+	        MICRO_G_URL=$(echo "$MICRO_G" | json_get 'browser_download_url' | grep 'apk')
+          APKS+="${NL}📦[Micro-G](${MICRO_G_URL})"
+
           MODULES=${MODULES#"$NL"}
           APKS=${APKS#"$NL"}
 
@@ -129,10 +142,10 @@ jobs:
           ${BODY}
 
           *▼ Download Links:*
-          Modules:
+          Magisk Modules (Root):
           ${MODULES}
 
-          APKs:
+          APKs (Non-Root):
           ${APKS}
           "
           echo "'$MSG'"

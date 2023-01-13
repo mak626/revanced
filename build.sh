@@ -77,6 +77,4 @@ if [ "$BUILD_MINDETACH_MODULE" = true ]; then
 	popd
 fi
 
-log "\nInstall [Vanced Microg](https://github.com/inotia00/VancedMicroG/releases) to be able to use non-root YouTube or Music"
-
 echo "Done"

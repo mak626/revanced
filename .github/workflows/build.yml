@@ -106,12 +106,14 @@ jobs:
           TG_CHAT: ${{ secrets.TG_CHAT }}
         if: env.TG_TOKEN != null
         run: |
-          cd build || echo "build folder not found"
+          json_get() { grep -o "\"${1}\":[^\"]*\"[^\"]*\"" | sed -E 's/".*".*"(.*)"/\1/'; }
+          gh_req() { wget -nv -O "$2" --header="$GH_AUTH_HEADER" "$1"; }
 
+          cd build || echo "build folder not found"
           NL=$'\n'
-          
           APKS=""
           MODULES=""
+
           for OUTPUT in *revanced*; do
             DL_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}/${OUTPUT}"
             if [[ $OUTPUT = *.apk ]]; then
@@ -129,7 +131,7 @@ jobs:
           done
 
           MICRO_G=$(gh_req https://api.github.com/repos/inotia00/VancedMicroG/releases/latest -)
-	        MICRO_G_URL=$(echo "$MICRO_G" | json_get 'browser_download_url' | grep 'apk')
+          MICRO_G_URL=$(echo "$MICRO_G" | json_get 'browser_download_url' | grep 'apk')
           APKS+="${NL}📦[Micro-G](${MICRO_G_URL})"
 
           MODULES=${MODULES#"$NL"}

@@ -3,6 +3,6 @@
     "node-fetch": "^2.6.8"
   },
   "scripts": {
-    "run": "node ./patchUpdate/index.js"
+    "check": "node ./patchUpdate/index.js"
   }
 }

@@ -9,3 +9,4 @@ build.md
 cmpr
 test.toml
 node_modules
+*.log

@@ -10,6 +10,8 @@ const checkPatch = async () => {
 
   const json = await repoDownload.json();
   console.log("VERSION: ", json.name);
+  const errors = [`Patch Version: _${json.name}_`];
+
   const patch_url = json.assets.find(
     (e) => e.name === "patches.json"
   )?.browser_download_url;
@@ -40,14 +42,21 @@ const checkPatch = async () => {
   oldExclude.forEach((e) => {
     if (!included.find((_e) => e === _e)) {
       console.log(`[INCLUDE] ${e} not found`);
+      errors.push(`[INCLUDE]: ${e}`);
     }
   });
 
   oldInclude.forEach((e) => {
     if (!excluded.find((_e) => e === _e)) {
       console.log(`[EXCLUDE] ${e} not found`);
+      errors.push(`[EXCLUDE]: ${e}`);
     }
   });
+
+  if (errors.length > 1) {
+    fs.writeFileSync("./errors.log", errors.join("\n"));
+    throw "Config need updating";
+  }
 
   let data = fs.readFileSync("./config.toml", { encoding: "utf-8" });
   data = data.split("\n");
@@ -86,4 +95,9 @@ const checkPatch = async () => {
   );
 };
 
-checkPatch();
+checkPatch()
+  .then()
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  });

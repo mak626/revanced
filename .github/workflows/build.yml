@@ -42,6 +42,7 @@ jobs:
 
           cd build
           yt_op=$(find . -maxdepth 1 -name "youtube-revanced-magisk-*.zip" -printf '%P')
+          yt_op=$(echo "Youtube Revanced Extended $yt_op" | sed "s/youtube-revanced-magisk-//" | sed "s/-all.zip//")
           if [ -z "$yt_op" ]; then
             echo "RELEASE_NAME=ReVanced" >> $GITHUB_OUTPUT
           else
@@ -121,7 +122,11 @@ jobs:
           MODULES=${MODULES#"$NL"}
           APKS=${APKS#"$NL"}
 
+          BODY="$(cat ../build.md | sed 's/\* \*\*/↪ \*\*/g; s/\*\*/\*/g; s/###//g')"
           MSG="*New build!*
+          *${{steps.get_output.outputs.RELEASE_NAME}}*
+
+          ${BODY}
 
           *▼ Download Links:*
           Modules:

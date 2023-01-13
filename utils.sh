@@ -5,6 +5,7 @@ MODULE_SCRIPTS_DIR="scripts"
 TEMP_DIR="temp"
 BUILD_DIR="build"
 PKGS_LIST="${TEMP_DIR}/module-pkgs"
+ORG="inotia00"
 
 if [ "${GITHUB_TOKEN+x}" ]; then
 	GH_AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
@@ -35,12 +36,12 @@ get_prebuilts() {
 	RV_CLI_JAR="${TEMP_DIR}/${RV_CLI_URL##*/}"
 	log "CLI: ${RV_CLI_URL##*/}"
 
-	RV_INTEGRATIONS_URL=$(gh_req https://api.github.com/repos/revanced/revanced-integrations/releases/latest - | json_get 'browser_download_url')
+	RV_INTEGRATIONS_URL=$(gh_req https://api.github.com/repos/${ORG}/revanced-integrations/releases/latest - | json_get 'browser_download_url')
 	RV_INTEGRATIONS_APK=${RV_INTEGRATIONS_URL##*/}
 	log "Integrations: $RV_INTEGRATIONS_APK"
 	RV_INTEGRATIONS_APK="${TEMP_DIR}/${RV_INTEGRATIONS_APK}"
 
-	RV_PATCHES=$(gh_req https://api.github.com/repos/revanced/revanced-patches/releases/latest -)
+	RV_PATCHES=$(gh_req https://api.github.com/repos/${ORG}/revanced-patches/releases/latest -)
 	RV_PATCHES_CHANGELOG=$(echo "$RV_PATCHES" | json_get 'body' | sed 's/\(\\n\)\+/\\n/g')
 	RV_PATCHES_URL=$(echo "$RV_PATCHES" | json_get 'browser_download_url' | grep 'jar')
 	RV_PATCHES_JAR="${TEMP_DIR}/${RV_PATCHES_URL##*/}"

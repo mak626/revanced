@@ -46,12 +46,15 @@ const checkPatch = async () => {
     }
   });
 
-  fs.writeFileSync(
-    "./patchUpdate/config.toml",
-    `excluded-patches = "${excluded.join(
-      " "
-    )}"\nincluded-patches = "${included.join(" ")}"`
+  let data = fs.readFileSync("./config.toml", { encoding: "utf-8" });
+  data = data.split("\n");
+  data.splice(-2, 2);
+  data.push(
+    `excluded-patches = "${oldExclude.join(" ")}"`,
+    `included-patches = "${oldInclude.join(" ")}"`
   );
+
+  fs.writeFileSync("./config.toml", data.join("\n"));
 
   fs.writeFileSync(
     "./patchUpdate/patches.json",

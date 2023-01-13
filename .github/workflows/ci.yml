@@ -1,0 +1,67 @@
+name: CI
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 16 * * *"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Should build?
+        id: should_build
+        shell: bash
+        run: |
+          source utils.sh
+          toml_prep "$(cat config.toml)"
+
+          is_youtube_latest() {
+            v=$(toml_get "$(toml_get_table "YouTube")" "version") || version=""
+            if [ "$v" = latest ]; then
+              declare -r cur_yt=$(sed -n 's/.*YouTube: \(.*\)/\1/p' build.md | xargs)
+              [ -z "$cur_yt" ] && return 1 # empty, fail=>dont build
+              declare -r last_ver=$(get_apk_vers "https://www.apkmirror.com/uploads/?appcategory=youtube" | get_largest_ver)
+
+              echo "current yt version: $cur_yt"
+              echo "latest yt version: $last_ver"
+              [ "$cur_yt" != "$last_ver" ] # test success=>build, fail=>dont build
+            else
+              return 1 # not experimental, dont build
+            fi
+          }
+
+          is_patches_latest() {
+            declare -r last_patches_url=$(wget -nv --header="Authorization: token ${{ secrets.GITHUB_TOKEN }}" -O- https://api.github.com/repos/revanced/revanced-patches/releases/latest | json_get 'browser_download_url' | grep 'jar')
+            declare -r last_patches=${last_patches_url##*/}
+            cur_patches=$(sed -n 's/.*Patches: \(.*\)/\1/p' build.md | xargs)
+
+            echo "current patches version: $cur_patches"
+            echo "latest patches version: $last_patches"
+            [ "$cur_patches" != "$last_patches" ] # test success=>build, fail=>dont build
+          }
+
+          if ! git checkout update; then
+            echo "first time building!"
+            echo "SHOULD_BUILD=1" >> $GITHUB_OUTPUT
+          elif is_patches_latest || is_youtube_latest; then
+            echo "build!"
+            echo "SHOULD_BUILD=1" >> $GITHUB_OUTPUT
+          else
+            echo "dont build!"
+            echo "SHOULD_BUILD=0" >> $GITHUB_OUTPUT
+          fi
+
+    outputs:
+      SHOULD_BUILD: ${{ steps.should_build.outputs.SHOULD_BUILD }}
+
+  build:
+    permissions: write-all
+    needs: check
+    uses: ./.github/workflows/build.yml
+    if: ${{ needs.check.outputs.SHOULD_BUILD == 1 }}
+    secrets: inherit

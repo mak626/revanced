@@ -15,46 +15,7 @@ jobs:
 
       - name: Should build?
         id: should_build
-        shell: bash
-        run: |
-          source utils.sh
-          toml_prep "$(cat config.toml)"
-
-          is_youtube_latest() {
-            v=$(toml_get "$(toml_get_table "YouTube")" "version") || version=""
-            if [ "$v" = latest ]; then
-              declare -r cur_yt=$(sed -n 's/.*YouTube: \(.*\)/\1/p' build.md | xargs)
-              [ -z "$cur_yt" ] && return 1 # empty, fail=>dont build
-              declare -r last_ver=$(get_apk_vers "https://www.apkmirror.com/uploads/?appcategory=youtube" | get_largest_ver)
-
-              echo "current yt version: $cur_yt"
-              echo "latest yt version: $last_ver"
-              [ "$cur_yt" != "$last_ver" ] # test success=>build, fail=>dont build
-            else
-              return 1 # not experimental, dont build
-            fi
-          }
-
-          is_patches_latest() {
-            declare -r last_patches_url=$(wget -nv --header="Authorization: token ${{ secrets.GITHUB_TOKEN }}" -O- https://api.github.com/repos/${ORG}/revanced-patches/releases/latest | json_get 'browser_download_url' | grep 'jar')
-            declare -r last_patches=${last_patches_url##*/}
-            cur_patches=$(sed -n 's/.*Patches: \(.*\)/\1/p' build.md | xargs)
-
-            echo "current patches version: $cur_patches"
-            echo "latest patches version: $last_patches"
-            [ "$cur_patches" != "$last_patches" ] # test success=>build, fail=>dont build
-          }
-
-          if ! git checkout update; then
-            echo "first time building!"
-            echo "SHOULD_BUILD=1" >> $GITHUB_OUTPUT
-          elif is_patches_latest || is_youtube_latest; then
-            echo "build!"
-            echo "SHOULD_BUILD=1" >> $GITHUB_OUTPUT
-          else
-            echo "dont build!"
-            echo "SHOULD_BUILD=0" >> $GITHUB_OUTPUT
-          fi
+        run: ./scripts/workflow/ci.sh should_build
 
     outputs:
       SHOULD_BUILD: ${{ steps.should_build.outputs.SHOULD_BUILD }}
@@ -80,28 +41,14 @@ jobs:
         run: npm run-script check
 
       - name: On Failure
+        id: send_telegram_failure
         if: ${{ failure() }}
-        shell: bash
-        run: |
-          ERRORS=$(<errors.log)
-          POST="https://api.telegram.org/bot${TG_TOKEN}/sendMessage"
-          URL="[Failed Action]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
-
-          MSG="*Check patches config*
-
-          *LOG*
-          ${ERRORS}
-
-          ${URL}"
-
-          curl -X POST --data-urlencode "parse_mode=Markdown" --data-urlencode "text=${MSG}" --data-urlencode "chat_id=${TG_DEV}" "$POST" > /dev/null
-          echo "SHOULD_BUILD=0" >> $GITHUB_OUTPUT
+        run: ./scripts/workflow/ci.sh send_telegram_failure
 
       - name: On success
         id: config
         shell: bash
-        run: |
-          echo "SHOULD_BUILD=1" >> $GITHUB_OUTPUT
+        run: echo "SHOULD_BUILD=1" >> $GITHUB_OUTPUT
 
     outputs:
       SHOULD_BUILD: ${{ steps.config.outputs.SHOULD_BUILD }}

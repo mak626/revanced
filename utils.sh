@@ -6,7 +6,7 @@ TEMP_DIR="temp"
 BUILD_DIR="build"
 PKGS_LIST="${TEMP_DIR}/module-pkgs"
 ORG="inotia00"
-AUTHOR="MAK"
+MODULE_AUTHOR="MAK"
 
 if [ "${GITHUB_TOKEN+x}" ]; then
 	GH_AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
@@ -75,8 +75,8 @@ function set_prebuilts() {
 	log "Patches: ${RV_PATCHES_JAR#"$TEMP_DIR/"}"
 }
 
-function req() { wget -nv -O "$2" --header="$WGET_HEADER" "$1"; }
-function gh_req() { wget -nv -O "$2" --header="$GH_AUTH_HEADER" "$1"; }
+function req() { wget -q -nv -O "$2" --header="$WGET_HEADER" "$1"; }
+function gh_req() { wget -q -nv -O "$2" --header="$GH_AUTH_HEADER" "$1"; }
 function log() { echo -e "$1  " >>build.md; }
 function get_largest_ver() {
 	read -r max
@@ -116,7 +116,7 @@ function semver_validate() {
 
 function dl_if_dne() {
 	if [ ! -f "$1" ]; then
-		echo -e "\nGetting '$1' from '$2'"
+		echo "Getting '$1' from '$2'"
 		req "$2" "$1"
 	fi
 }
@@ -207,7 +207,7 @@ function build_rv() {
 
 	for build_mode in "${build_mode_arr[@]}"; do
 		patcher_args="${args[patcher_args]}"
-		echo -n "Building '${args[app_name]}' (${arch}) in "
+		echo -n -e "\nBuilding '${args[app_name]}' (${arch}) in "
 		if [ "$build_mode" = module ]; then echo "'module' mode"; else echo "'APK' mode"; fi
 		if [ "${args[microg_patch]}" ]; then
 			if [ "$build_mode" = module ]; then
@@ -335,7 +335,7 @@ function service_sh() {
 	echo "${s//__PKGVER/$2}" >"${3}/service.sh"
 }
 function get_author() {
-	echo "$AUTHOR"
+	echo "$MODULE_AUTHOR"
 }
 function module_prop() {
 	echo "id=${1}

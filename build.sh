@@ -18,7 +18,7 @@ BUILD_MINDETACH_MODULE=$(toml_get "$main_config_t" build-mindetach-module)
 
 if ((COMPRESSION_LEVEL > 9)) || ((COMPRESSION_LEVEL < 1)); then abort "compression-level must be from 1 to 9"; fi
 if [ "$UPDATE_PREBUILTS" = true ]; then get_prebuilts; else set_prebuilts; fi
-if [ "$BUILD_MINDETACH_MODULE" = true ]; then : >$PKGS_LIST; fi
+if [ "$BUILD_MINDETACH_MODULE" = true ]; then : >"$PKGS_LIST"; fi
 get_cmpr
 
 log "**App Versions:**"
@@ -71,7 +71,7 @@ rm -rf temp/tmp.*
 
 if [ "$BUILD_MINDETACH_MODULE" = true ]; then
 	echo "Building mindetach module"
-	cp -f $PKGS_LIST mindetach-magisk/mindetach/detach.txt
+	cp -f "$PKGS_LIST" mindetach-magisk/mindetach/detach.txt
 	pushd mindetach-magisk/mindetach/
 	zip -r ../../build/mindetach-"$(grep version= module.prop | cut -d= -f2)".zip .
 	popd

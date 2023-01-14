@@ -94,7 +94,7 @@ jobs:
 
           ${URL}"
 
-          curl -X POST --data-urlencode "parse_mode=Markdown" --data-urlencode "text=${MSG}" --data-urlencode "chat_id=${TG_DEV}" "$POST"
+          curl -X POST --data-urlencode "parse_mode=Markdown" --data-urlencode "text=${MSG}" --data-urlencode "chat_id=${TG_DEV}" "$POST" > /dev/null
           echo "SHOULD_BUILD=0" >> $GITHUB_OUTPUT
 
       - name: On success

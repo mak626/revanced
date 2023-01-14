@@ -66,6 +66,7 @@ jobs:
     env:
       TG_TOKEN: ${{ secrets.TG_TOKEN }}
       TG_CHAT: ${{ secrets.TG_CHAT }}
+      TG_DEV: ${{ secrets.TG_DEV }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -93,7 +94,7 @@ jobs:
 
           ${URL}"
 
-          curl -X POST --data-urlencode "parse_mode=Markdown" --data-urlencode "text=${MSG}" --data-urlencode "chat_id=${TG_CHAT}" "$POST"
+          curl -X POST --data-urlencode "parse_mode=Markdown" --data-urlencode "text=${MSG}" --data-urlencode "chat_id=${TG_DEV}" "$POST"
           echo "SHOULD_BUILD=0" >> $GITHUB_OUTPUT
 
       - name: On success
@@ -111,3 +112,4 @@ jobs:
     uses: ./.github/workflows/build.yml
     if: ${{ needs.config_check.outputs.SHOULD_BUILD == 1 }}
     secrets: inherit
+

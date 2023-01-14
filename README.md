@@ -29,6 +29,6 @@ Make sure you have JDK 17 installed. Then run:
 
 ```console
 git clone --recurse-submodules https://github.com/mak626/revanced
-cd revanced-magisk-module
+cd revanced
 ./build.sh
 ```

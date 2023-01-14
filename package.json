@@ -5,6 +5,6 @@
     "node-fetch": "^2.6.8"
   },
   "scripts": {
-    "check": "node ./patchUpdate/index.js"
+    "check": "node ./patch-update/index.js"
   }
 }

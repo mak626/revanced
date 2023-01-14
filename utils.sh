@@ -6,6 +6,7 @@ TEMP_DIR="temp"
 BUILD_DIR="build"
 PKGS_LIST="${TEMP_DIR}/module-pkgs"
 ORG="inotia00"
+AUTHOR="MAK"
 
 if [ "${GITHUB_TOKEN+x}" ]; then
 	GH_AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
@@ -332,12 +333,15 @@ service_sh() {
 	local s="${SERVICE_SH//__PKGNAME/$1}"
 	echo "${s//__PKGVER/$2}" >"${3}/service.sh"
 }
+get_author(){
+	echo "$AUTHOR"
+}
 module_prop() {
 	echo "id=${1}
 name=${2}
 version=v${3}
 versionCode=${NEXT_VER_CODE}
-author=MAK
+author=$(get_author)
 description=${4}" >"${6}/module.prop"
 
 	if [ "$ENABLE_MAGISK_UPDATE" = true ]; then echo "updateJson=${5}" >>"${6}/module.prop"; fi

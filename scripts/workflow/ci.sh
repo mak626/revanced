@@ -18,7 +18,7 @@ function is_youtube_latest() {
     fi
 }
 function is_patches_latest() {
-    declare -r last_patches_url=$(wget -q -nv -O- https://api.github.com/repos/"${ORG}"/revanced-patches/releases/latest | json_get 'browser_download_url' | grep 'jar')
+    declare -r last_patches_url=$(wget -nv --header="Authorization: token ${GITHUB_TOKEN}" -O- https://api.github.com/repos/"${ORG}"/revanced-patches/releases/latest | json_get 'browser_download_url' | grep 'jar')
     declare -r last_patches=${last_patches_url##*/}
     cur_patches=$(sed -n 's/.*Patches: \(.*\)/\1/p' build.md | xargs)
 

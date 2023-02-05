@@ -1,6 +1,6 @@
 {
-        "version": "v18.04.35",
-        "versionCode": 3,
-        "zipUrl": "https://github.com/mak626/revanced/releases/download/3/youtube-revanced-magisk-v18.04.35-all.zip",
+        "version": "v18.04.41",
+        "versionCode": 4,
+        "zipUrl": "https://github.com/mak626/revanced/releases/download/4/youtube-revanced-magisk-v18.04.41-all.zip",
         "changelog": "https://raw.githubusercontent.com/mak626/revanced/update/build.md"
     }

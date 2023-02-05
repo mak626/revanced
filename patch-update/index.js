@@ -1,7 +1,6 @@
 const savePatches = require("./config.json");
 const fs = require("fs");
 const fetch = require("node-fetch");
-const path = require("path");
 
 const PATCH_API =
   "https://api.github.com/repos/inotia00/revanced-patches/releases/latest";

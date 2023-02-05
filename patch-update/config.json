@@ -2,7 +2,6 @@
     "exclude": [
         "custom-branding-icon-afn-red",
         "custom-branding-name",
-        "custom-video-buffer",
         "enable-wide-searchbar",
         "hide-cast-button",
         "hide-comment-component",

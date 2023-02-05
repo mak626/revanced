@@ -21,5 +21,5 @@ microg-patch = "microg-support"
 apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube/"
 module-prop-name = "ytrv-mak-magisk"
 merge-integrations = true
-excluded-patches = "custom-branding-icon-afn-red custom-branding-name custom-video-buffer enable-wide-searchbar hide-cast-button hide-comment-component hide-shorts-button hide-shorts-component return-youtube-dislike translations"
+excluded-patches = "custom-branding-icon-afn-red custom-branding-name enable-wide-searchbar hide-cast-button hide-comment-component hide-shorts-button hide-shorts-component return-youtube-dislike translations"
 included-patches = "force-premium-heading"

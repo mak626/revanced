@@ -32,3 +32,4 @@ git clone --recurse-submodules https://github.com/mak626/revanced
 cd revanced
 ./build.sh
 ```
+

@@ -5,6 +5,7 @@
     "node-fetch": "^2.6.8"
   },
   "scripts": {
-    "check": "node ./patch-update/index.js"
+    "check": "node ./patch-update/index.js",
+    "update-submodule": "git submodule update --recursive --remote"
   }
 }

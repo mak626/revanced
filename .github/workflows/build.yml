@@ -80,7 +80,7 @@ jobs:
           NL=$'\n'
           APKS=""
           MODULES=""
-          for OUTPUT in *revanced*; do
+          for OUTPUT in *; do
             DL_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}/${OUTPUT}"
             if [[ $OUTPUT = *.apk ]]; then
               APKS+="${NL}📦[${OUTPUT}](${DL_URL})"

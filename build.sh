@@ -29,8 +29,8 @@ LOGGING_F=$(toml_get "$main_config_t" logging-to-file) && vtf "$LOGGING_F" "logg
 CONF_PATCHES_VER=$(toml_get "$main_config_t" patches-version) || CONF_PATCHES_VER=
 CONF_INTEGRATIONS_VER=$(toml_get "$main_config_t" integrations-version) || CONF_INTEGRATIONS_VER=
 
-PATCHES_SRC=$(toml_get "$main_config_t" patches-source) || PATCHES_SRC="revanced/revanced-patches"
-INTEGRATIONS_SRC=$(toml_get "$main_config_t" integrations-source) || INTEGRATIONS_SRC="revanced/revanced-integrations"
+PATCHES_SRC=$(toml_get "$main_config_t" patches-source) || PATCHES_SRC="inotia00/revanced-patches"
+INTEGRATIONS_SRC=$(toml_get "$main_config_t" integrations-source) || INTEGRATIONS_SRC="inotia00/revanced-integrations"
 RV_BRAND=$(toml_get "$main_config_t" rv-brand) || RV_BRAND="ReVanced"
 RV_BRAND_F=${RV_BRAND,,}
 RV_BRAND_F=${RV_BRAND_F// /-}

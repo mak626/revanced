@@ -43,7 +43,7 @@ abort() { echo >&2 -e "\033[0;31mABORT: $1\033[0m" && exit 1; }
 get_prebuilts() {
 	pr "Getting prebuilts"
 	local rv_cli_url rv_integrations_url rv_patches rv_patches_changelog rv_patches_dl rv_patches_url rv_integrations_rel rv_patches_rel
-	rv_cli_url=$(gh_req "https://api.github.com/repos/j-hc/revanced-cli/releases/latest" - | json_get 'browser_download_url') || return 1
+	rv_cli_url=$(gh_req "https://api.github.com/repos/inotia00/revanced-cli/releases/latest" - | json_get 'browser_download_url') || return 1
 	RV_CLI_JAR="${PREBUILTS_DIR}/${rv_cli_url##*/}"
 	log "CLI: ${rv_cli_url##*/}"
 
@@ -460,7 +460,7 @@ module_prop() {
 name=${2}
 version=v${3}
 versionCode=${NEXT_VER_CODE}
-author=j-hc
+author=MAK
 description=${4}" >"${6}/module.prop"
 
 	if [ "$ENABLE_MAGISK_UPDATE" = true ]; then echo "updateJson=${5}" >>"${6}/module.prop"; fi

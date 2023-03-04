@@ -6,7 +6,6 @@
   },
   "scripts": {
     "check": "node ./patch-update/index.js",
-    "check-version": "node ./patch-update/version_check.js",
     "update-submodule": "git submodule update --recursive --remote"
   }
 }

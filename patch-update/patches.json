@@ -1,6 +1,7 @@
 {
     "excluded": [
         "custom-branding-icon-afn-blue",
+        "custom-branding-icon-mmt",
         "custom-branding-icon-revancify",
         "force-premium-heading",
         "materialyou"
@@ -70,6 +71,7 @@
         "settings",
         "sponsorblock",
         "swipe-controls",
+        "switch-create-notification",
         "theme",
         "translations"
     ]

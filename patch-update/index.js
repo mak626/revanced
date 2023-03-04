@@ -20,6 +20,17 @@ const checkPatch = async () => {
 
   const patches = await (await fetch(patch_url)).json();
 
+  const versionSet = new Set();
+  patches.forEach((e) => {
+    const version = e?.compatiblePackages?.find(
+      (_e) => _e.name === "com.google.android.youtube"
+    )?.versions;
+    if (version) version.forEach((e) => versionSet.add(e));
+  });
+
+  const latestVersion = [...versionSet].sort().pop();
+  console.log("Youtube Version:", latestVersion);
+
   const oldExclude = savePatches.exclude.sort();
   const oldInclude = savePatches.include.sort();
 
@@ -72,10 +83,11 @@ const checkPatch = async () => {
 
   const config = fs.readFileSync(CONFIG_PATH, { encoding: "utf-8" });
   const data = config.split("\n");
-  data.splice(-2, 2);
+  data.splice(-3, 3);
   data.push(
     `excluded-patches = "${oldExclude.join(" ")}"`,
-    `included-patches = "${oldInclude.join(" ")}"`
+    `included-patches = "${oldInclude.join(" ")}"`,
+    `version = "${latestVersion ?? "latest"}"`
   );
 
   // Update config.toml

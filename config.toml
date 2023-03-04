@@ -11,9 +11,9 @@ integrations-source = "inotia00/revanced-integrations"
 [YouTube]
 enabled = true
 build-mode = "both"                                                   # 'both', 'apk' or 'module'
-version = "latest"                                                      # 'auto', 'latest' or a custom one like '17.40.41'
 exclusive-patches = false                                             # excludes all patches by default
 apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube/"
 module-prop-name = "ytrv-mak-magisk"
 excluded-patches = "custom-branding-icon-afn-red custom-branding-name enable-wide-searchbar hide-cast-button hide-comment-component hide-shorts-button hide-shorts-component return-youtube-dislike translations"
 included-patches = "force-premium-heading"
+version = "latest"

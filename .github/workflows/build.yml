@@ -95,8 +95,29 @@ jobs:
 
           MODULES=${MODULES#"$NL"}
           APKS=${APKS#"$NL"}
+          sed_cmd=$(
+              cat <<EOF
+          s/\\_//g
+          s/\*/\\\\*/g
+          s/(/\\(/g
+          s/)/\\)/g
+          s/~/\\\\~/g
+          s/\`/\\\\\`/g
+          s/>/\\>/g
+          s/+/\\+/g
+          s/-/\\-/g
+          s/=/\\=/g
+          s/|/\\|/g
+          s/{/\\{/g
+          s/}/\\}/g
+          s/\./\\./g
+          s/!/\\!/g
+          s/#//g
+          /^YouTube Music/,/^$/g
+          EOF
+          )
 
-          BODY="$(sed 's/^\* \*\*/↪ \*\*/g; s/^\* `/↪ \*\*/g; s/`/\*/g; s/^\* /\↪/g; s/\*\*/\*/g; s/###//g;' ../build.md)"
+          BODY=$(cat ../build.md | sed -e "$sed_cmd")
           MSG="*New build!*
           *ReVanced*
 

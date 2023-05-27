@@ -1,15 +1,9 @@
 {
     "exclude": [
-        "custom-branding-icon-afn-red",
-        "custom-branding-name",
-        "enable-wide-searchbar",
+        "custom-branding",
+        "wide-searchbar",
         "hide-cast-button",
-        "hide-comment-component",
-        "hide-shorts-component",
-        "return-youtube-dislike",
-        "translations"
+        "hide-shorts-components"
     ],
-    "include": [
-        "force-premium-heading"
-    ]
+    "include": []
 }

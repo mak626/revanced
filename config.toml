@@ -3,8 +3,8 @@ compression-level = 9         # compression level for module zips. between 1 and
 logging-to-file = true        # enables logging of every patch process to a seperate file
 enable-magisk-update = true   # set this to false if you do not want to receive updates for the module in magisk app
 build-mindetach-module = true
-patches-source = "inotia00/revanced-patches"
-integrations-source = "inotia00/revanced-integrations"
+patches-source = "revanced/revanced-patches"
+integrations-source = "revanced/revanced-integrations"
 
 # add 'enabled = false' for not patching a specific app or remove its entry
 [YouTube]
@@ -14,5 +14,5 @@ exclusive-patches = false                                             # excludes
 version = "auto"
 apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube/"
 module-prop-name = "ytrv-mak-magisk"
-excluded-patches = "custom-branding-icon-afn-red custom-branding-name enable-wide-searchbar hide-cast-button hide-comment-component hide-shorts-component return-youtube-dislike translations"
-included-patches = "force-premium-heading"
+excluded-patches = "custom-branding hide-cast-button hide-shorts-components wide-searchbar"
+included-patches = ""

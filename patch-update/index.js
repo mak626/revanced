@@ -3,7 +3,7 @@ const fs = require("fs");
 const fetch = require("node-fetch");
 
 const PATCH_API =
-  "https://api.github.com/repos/inotia00/revanced-patches/releases/latest";
+  "https://api.github.com/repos/revanced/revanced-patches/releases/latest";
 const YOUTUBE_PACKAGE_NAME = "com.google.android.youtube";
 const CONFIG_PATH = "./config.toml";
 

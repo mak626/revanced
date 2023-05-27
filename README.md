@@ -6,8 +6,8 @@ Get the [latest Youtube Revanced](https://github.com/mak626/revanced/releases).
 
 ## Sources
 
-- [Revanced Extended Patches](https://github.com/inotia00/revanced-patches)
-- [Revanced Extended Integrations](https://github.com/inotia00/revanced-integrations)
+- [Revanced Extended Patches](https://github.com/revanced/revanced-patches)
+- [Revanced Extended Integrations](https://github.com/revanced/revanced-integrations)
 - [Revanced CLI](https://github.com/j-hc/revanced-cli)
 - [Magisk](https://github.com/j-hc/revanced-magisk-module)
 
@@ -20,7 +20,7 @@ Get the [latest Youtube Revanced](https://github.com/mak626/revanced/releases).
 
 ### Non Root
 
-- Download & install latest [Micro G](https://github.com/inotia00/VancedMicroG/releases/latest/)
+- Download & install latest [Micro G](https://github.com/revanced/VancedMicroG/releases/latest/)
 - Download & install latest [revanced apk](https://github.com/mak626/revanced/releases/latest)
 
 ## Building Locally

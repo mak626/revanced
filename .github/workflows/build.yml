@@ -89,7 +89,7 @@ jobs:
             fi
           done
 
-          MICRO_G=$(wget -q -nv -O- https://api.github.com/repos/inotia00/VancedMicroG/releases/latest)
+          MICRO_G=$(wget -q -nv -O- https://api.github.com/repos/revanced/VancedMicroG/releases/latest)
           MICRO_G_URL=$(echo "$MICRO_G" | json_get 'browser_download_url' | grep 'apk')
           APKS+="${NL}📦[Micro-G](${MICRO_G_URL})"
 

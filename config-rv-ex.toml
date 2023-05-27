@@ -5,8 +5,8 @@ enable-magisk-update = true   # set this to false if you do not want to receive 
 build-mindetach-module = true
 
 # extended
-patches-source = "inotia00/revanced-patches"
-integrations-source = "inotia00/revanced-integrations"
+patches-source = "revanced/revanced-patches"
+integrations-source = "revanced/revanced-integrations"
 rv-brand = "YouTube"
 
 [YouTube]

@@ -20,7 +20,7 @@ Get the [latest Youtube Revanced](https://github.com/mak626/revanced/releases).
 
 ### Non Root
 
-- Download & install latest [Micro G](https://github.com/revanced/VancedMicroG/releases/latest/)
+- Download & install latest [Micro G](https://github.com/inotia00/VancedMicroG/releases/latest/)
 - Download & install latest [revanced apk](https://github.com/mak626/revanced/releases/latest)
 
 ## Building Locally

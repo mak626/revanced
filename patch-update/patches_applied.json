@@ -1,10 +1,10 @@
 {
     "excluded": [
         "custom-branding",
-        "custom-video-buffer",
+        "external-downloads",
         "hide-cast-button",
         "hide-shorts-components",
-        "remove-player-button-background",
+        "remove-player-controls-background",
         "wide-searchbar"
     ],
     "included": [
@@ -17,12 +17,10 @@
         "disable-player-popup-panels",
         "disable-shorts-on-startup",
         "disable-zoom-haptics",
-        "downloads",
         "enable-debugging",
         "hdr-auto-brightness",
         "hide-ads",
         "hide-album-cards",
-        "hide-artist-card",
         "hide-autoplay-button",
         "hide-breaking-news-shelf",
         "hide-captions-button",
@@ -31,8 +29,8 @@
         "hide-endscreen-cards",
         "hide-filter-bar",
         "hide-floating-microphone-button",
-        "hide-get-premium",
         "hide-info-cards",
+        "hide-layout-components",
         "hide-load-more-button",
         "hide-player-buttons",
         "hide-player-overlay",
@@ -43,8 +41,9 @@
         "hide-watermark",
         "minimized-playback",
         "navigation-buttons",
-        "old-quality-layout",
+        "old-video-quality-menu",
         "open-links-externally",
+        "playback-speed",
         "premium-heading",
         "remember-video-quality",
         "return-youtube-dislike",
@@ -55,7 +54,6 @@
         "tablet-mini-player",
         "theme",
         "vanced-microg-support",
-        "video-ads",
-        "video-speed"
+        "video-ads"
     ]
 }

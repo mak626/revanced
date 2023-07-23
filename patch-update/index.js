@@ -18,7 +18,14 @@ const checkPatch = async () => {
     (e) => e.name === "patches.json"
   )?.browser_download_url;
 
-  const patches = await (await fetch(patch_url)).json();
+  const convertToKebabCase = ({ name, ...data }) => ({
+    ...data,
+    name: name.toLocaleLowerCase().split(" ").join("-"),
+  });
+
+  const patches = (await (await fetch(patch_url)).json()).map(
+    convertToKebabCase
+  );
 
   const oldExclude = savePatches.exclude.sort();
   const oldInclude = savePatches.include.sort();

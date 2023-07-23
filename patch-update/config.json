@@ -3,7 +3,8 @@
         "custom-branding",
         "wide-searchbar",
         "hide-cast-button",
-        "hide-shorts-components"
+        "hide-shorts-components",
+        "external-downloads"
     ],
     "include": []
 }

@@ -1,7 +1,6 @@
 {
     "excluded": [
-        "custom-video-buffer",
-        "remove-player-button-background"
+        "remove-player-controls-background"
     ],
     "included": [
         "always-autorepeat",
@@ -14,12 +13,11 @@
         "disable-player-popup-panels",
         "disable-shorts-on-startup",
         "disable-zoom-haptics",
-        "downloads",
         "enable-debugging",
+        "external-downloads",
         "hdr-auto-brightness",
         "hide-ads",
         "hide-album-cards",
-        "hide-artist-card",
         "hide-autoplay-button",
         "hide-breaking-news-shelf",
         "hide-captions-button",
@@ -29,8 +27,8 @@
         "hide-endscreen-cards",
         "hide-filter-bar",
         "hide-floating-microphone-button",
-        "hide-get-premium",
         "hide-info-cards",
+        "hide-layout-components",
         "hide-load-more-button",
         "hide-player-buttons",
         "hide-player-overlay",
@@ -42,8 +40,9 @@
         "hide-watermark",
         "minimized-playback",
         "navigation-buttons",
-        "old-quality-layout",
+        "old-video-quality-menu",
         "open-links-externally",
+        "playback-speed",
         "premium-heading",
         "remember-video-quality",
         "return-youtube-dislike",
@@ -55,7 +54,6 @@
         "theme",
         "vanced-microg-support",
         "video-ads",
-        "video-speed",
         "wide-searchbar"
     ]
 }

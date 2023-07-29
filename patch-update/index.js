@@ -2,8 +2,9 @@ const savePatches = require("./config.json");
 const fs = require("fs");
 const fetch = require("node-fetch");
 
-const PATCH_API =
-  "https://api.github.com/repos/revanced/revanced-patches/releases/latest";
+const AUTHOR = "inotia00";
+
+const PATCH_API = `https://api.github.com/repos/${AUTHOR}/revanced-patches/releases/latest`;
 const YOUTUBE_PACKAGE_NAME = "com.google.android.youtube";
 const CONFIG_PATH = "./config.toml";
 

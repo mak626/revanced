@@ -1,10 +1,9 @@
 {
     "exclude": [
-        "custom-branding",
-        "wide-searchbar",
-        "hide-cast-button",
-        "hide-shorts-components",
-        "external-downloads"
+        "custom-branding-youtube-name",
+        "custom-branding-icon-revancify-blue"
     ],
-    "include": []
+    "include": [
+        "force-premium-heading"
+    ]
 }

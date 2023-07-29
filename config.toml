@@ -1,18 +1,17 @@
-# see https://github.com/j-hc/revanced-magisk-module/blob/main/CONFIG.md for more detailed explanations
-compression-level = 9         # compression level for module zips. between 1 and 9
 logging-to-file = true        # enables logging of every patch process to a seperate file
 enable-magisk-update = true   # set this to false if you do not want to receive updates for the module in magisk app
 build-mindetach-module = true
-patches-source = "revanced/revanced-patches"
-integrations-source = "revanced/revanced-integrations"
 
-# add 'enabled = false' for not patching a specific app or remove its entry
+# add 'enabled = false' for not patching a specific app or remove it from the config
+# see https://github.com/j-hc/revanced-magisk-module/blob/main/CONFIG.md for more detailed explanations
+
 [YouTube]
-enabled = true
-build-mode = "both"                                                   # 'both', 'apk' or 'module'
-exclusive-patches = false                                             # excludes all patches by default
-version = "auto"
+patches-source = "inotia00/revanced-patches"
+integrations-source = "inotia00/revanced-integrations"
+cli-source = "inotia00/revanced-cli"
+rv-brand = "Youtube"
+build-mode = "both"
 apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube/"
 module-prop-name = "ytrv-mak-magisk"
-excluded-patches = "custom-branding hide-cast-button hide-shorts-components wide-searchbar"
-included-patches = ""
+excluded-patches = "custom-branding-icon-revancify-blue custom-branding-youtube-name"
+included-patches = "force-premium-heading"

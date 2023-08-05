@@ -1,4 +1,4 @@
-YouTube: 18.29.38  
+YouTube: 18.30.37  
 
 Install [Vanced Microg](https://github.com/TeamVanced/VancedMicroG/releases) for non-root YouTube or YT Music  
 
@@ -7,33 +7,36 @@ Install [Vanced Microg](https://github.com/TeamVanced/VancedMicroG/releases) for
 ---
 Changelog:  
 CLI: inotia00/revanced-cli-2.22.2-all.jar  
-Integrations: inotia00/revanced-integrations-0.114.10.apk  
-Patches: inotia00/revanced-patches-2.186.10.jar  
+Integrations: inotia00/revanced-integrations-0.115.1.apk  
+Patches: inotia00/revanced-patches-2.187.1.jar  
 
 YouTube
 ==
-- feat(youtube): add support version `v18.29.38`
-- feat(youtube/hide-layout-components): add `Hide chips shelf` settings https://github.com/inotia00/ReVanced_Extended/issues/1180
-- feat(youtube/spoof-player-parameters): match with official revanced patches
-- fix(youtube/hide-shorts-components): wrong case notation https://github.com/inotia00/ReVanced_Extended/issues/1241
-- fix(youtube/settings): feed flyout menus filter doesn't get imported https://github.com/inotia00/ReVanced_Extended/issues/1203
-- fix(youtube/sponsorblock): `voting button` and `creating new segments button` are shown during the double tap
-
+- feat(youtube): add support version `v18.30.37`
+- feat(youtube/hide-button-container): now it support versions other than YouTube v18.20.39 https://github.com/ReVanced/revanced-patches/pull/2723
+- fix(youtube/integration): move dependence to dummy class path
+- fix(youtube/microg-support): app does not close when an error occurs
+- fix(youtube/microg-support): error toast message is not set correctly
 - feat(youtube/translations): update translation
-`Brazilian`, `Chinese Traditional`, `Greek`, `Japanese`, `Korean`, `Russian`, `Spanish`
+`Belarusian`, `Bulgarian`, `Chinese Traditional`, `French`, `German`, `Greek`, `Hungarian`, `Indonesian`, `Italian`, `Japanese`, `Polish`, `Russian`, `Vietnamese`
 
 
-YouTube Music
+Music
 ==
+- feat(music): add `hide-channel-guidelines` patch
+- feat(music/litho): add some exception
+- feat(music/enable-new-layout): change default value
+- feat(music/enable-new-layout): forcibly disable when the switch is off
+- feat(music/enable-sleep-timer): forcibly disable when the switch is off
 - feat(music/translations): update translation
-`Russian`
+`Brazilian`, `Chinese Traditional`, `French`, `Indonesian`, `Korean`, `Russian`, `Spanish`, `Ukrainian`, `Vietnamese`
 
 
-※ Compatible ReVanced Manager: [RVX Manager v1.4.3-2 (fork)](https://github.com/inotia00/revanced-manager/releases/tag/v1.4.3-2)
+Etc
+==
+- At the end of this release, RVX has been [discontinued](https://github.com/inotia00/revanced-documentation/wiki/Announcement). Thank you for using it so far.
 
-[Crowdin translation]
-- [YouTube / European Countries](https://crowdin.com/project/revancedextendedeu)
-- [YouTube / Other Countries](https://crowdin.com/project/revancedextended)
-- [YT Music](https://crowdin.com/project/revanced-music-extended)
+
+※ Compatible ReVanced Manager: [RVX Manager v1.5.2 (fork)](https://github.com/inotia00/revanced-manager/releases/tag/v1.5.2)
 
 ---  

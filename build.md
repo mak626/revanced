@@ -1,4 +1,4 @@
-YouTube: 18.32.39  
+YouTube: 18.33.40  
 
 Install [Vanced Microg](https://github.com/TeamVanced/VancedMicroG/releases) for non-root YouTube or YT Music  
 
@@ -6,46 +6,44 @@ Install [Vanced Microg](https://github.com/TeamVanced/VancedMicroG/releases) for
 
 ---
 Changelog:  
-CLI: inotia00/revanced-cli-3.1.2-all.jar  
-Integrations: inotia00/revanced-integrations-0.117.15.apk  
-Patches: inotia00/revanced-patches-2.190.15.jar  
+CLI: inotia00/revanced-cli-3.1.4-all.jar  
+Integrations: inotia00/revanced-integrations-0.117.24.apk  
+Patches: inotia00/revanced-patches-2.190.24.jar  
 
 YouTube
 ==
-- feat(youtube): add `alternative-thumbnails` patch https://github.com/inotia00/revanced-patches/pull/19
-- feat(youtube): add support version `v18.32.39`
-- feat(youtube): drop support version `v18.19.36` ~ `v18.21.35`
-- feat(youtube/hide-button-container): add `Hide transcript button` settings https://github.com/inotia00/revanced-patches/pull/19
-- feat(youtube/hide-layout-components): add `Hide notify me button` settings https://github.com/inotia00/revanced-patches/pull/19
-- feat(youtube/hide-player-flyout-panel): add `Hide stable volume menu`, `Hide captions menu footer`, `Hide quality menu footer` settings https://github.com/inotia00/revanced-patches/pull/19
-- feat(youtube/hide-shorts-components): add `Hide pivot button` settings https://github.com/inotia00/revanced-patches/pull/19
-- fix(youtube/enable-old-quality-layout): causes a crash in certain situations http://github.com/inotia00/ReVanced_Extended/issues/1430
-- fix(youtube/sponsorblock): some strings resources are missing https://github.com/inotia00/ReVanced_Extended/issues/1425
-- fix(youtube/spoof-player-parameters): seekbar thumbnail preview not shown in age restricted video & live stream
-- fix(youtube/spoof-player-parameters): seekbar thumbnail preview quality is very low
+- feat(youtube/default-video-quality): add `Skip dummy segment` setting (Experimental Flags)
+- feat(youtube/litho-filter): commit reflected from official ReVanced
+- feat(youtube/video-id): removes unnecessary fingerprints
+- fix(youtube/disable-haptic-feedback): force close occurs in YouTube v18.27.36
+- fix(youtube/enable-minimized-playback): change the method by which patches are applied
+- fix(youtube/overlay-buttons): radio buttons in speed dialog always remember last selected value https://github.com/inotia00/ReVanced_Extended/issues/1484
+- fix(youtube/swipe-controls): auto brightness value is not loaded properly https://github.com/inotia00/ReVanced_Extended/issues/1483
+- rollback(youtube/hide-shorts-components): rollback hide the shorts shelf in search results (sometimes they hide the shorts section in the channel information)
 - feat(youtube/translations): update translation
-`Arabic`, `Brazilian`, `Greek`, `Italian`, `Korean`, `Polish`, `Russian`, `Spanish`, `Turkish`, `Ukrainian`, `Vietnamese`
+`Arabic`, `Brazilian`, `Bulgarian`, `Chinese Traditional`, `French`, `Hungarian`, `Italian`, `Japanese`, `Korean`, `Polish`, `Russian`, `Spanish`, `Turkish`, `Ukrainian`, `Vietnamese`
 
 
 YouTube Music
 ==
-- feat(music): add support version `v6.21.51`
-- feat(music): add `repace-cast-button` patch https://github.com/inotia00/ReVanced_Extended/issues/1431
-- fix(music): some patches are broken in `v6.15.52` https://github.com/inotia00/ReVanced_Extended/issues/1414
-- fix(music/hook-download-button): apply more safer method
-- fix(music/settings): some toggles do not change properly when importing settings https://github.com/inotia00/ReVanced_Extended/issues/1427
+- feat(music): add support version `v6.22.51`
+- feat(music/litho-filter): commit reflected from official ReVanced
+- feat(music/replace-cast-button): change setting description
+- feat(music/video-information): removes unnecessary fingerprints
+- fix(music/enable-playback-speed): radio buttons in speed dialog always remember last selected value https://github.com/inotia00/ReVanced_Extended/issues/1484
+- fix(music/hook-download-button): slightly improved action bar loading time
+- fix(music/player-type-hook): player type is not hooked properly
+- fix(music/return-youtube-dislike): wrong layout applied in RTL layout https://github.com/inotia00/ReVanced_Extended/issues/1475
 - feat(music/translations): update translation
-`Brazilian`, `Greek`, `Italian`, `Japanese`, `Korean`, `Polish`, `Russian`, `Spanish`, `Turkish`, `Vietnamese`
+`Greek`, `Russian`
 
 
 Etc
 ==
 - build: bump dependencies
-- in case of YouTube, clean install is recommended
-- In case of YouTube Music, Google dropped support for Android 5.0.x to 6.0.x since `v6.21.51`
 
 
-※ Compatible ReVanced Manager: [RVX Manager v1.9.7 (fork)](https://github.com/inotia00/revanced-manager/releases/tag/v1.9.7)
+※ Compatible ReVanced Manager: [RVX Manager v1.10.3 (fork)](https://github.com/inotia00/revanced-manager/releases/tag/v1.10.3)
 [Crowdin translation]
 - [YouTube/European Countries](https://crowdin.com/project/revancedextendedeu)
 - [YouTube/Other Countries](https://crowdin.com/project/revancedextended)

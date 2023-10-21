@@ -32,9 +32,9 @@ const checkPatch = async () => {
   let excludedPatches = [];
   let includedPatches = [];
 
-  patches.forEach(({ excluded, name, compatiblePackages }) => {
+  patches.forEach(({ use, name, compatiblePackages }) => {
     if (compatiblePackages.find((e) => e.name == YOUTUBE_PACKAGE_NAME)) {
-      if (excluded) excludedPatches.push(name);
+      if (use == false) excludedPatches.push(name);
       else includedPatches.push(name);
     }
   });

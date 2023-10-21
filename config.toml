@@ -11,6 +11,9 @@ cli-source = "inotia00/revanced-cli"
 
 [YouTube]
 build-mode = "both"
+patches-source = "inotia00/revanced-patches"
+integrations-source = "inotia00/revanced-integrations"
+cli-source = "inotia00/revanced-cli"
 apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube/"
 excluded-patches = "'Custom branding YouTube name' 'Custom branding icon Revancify blue'"
 included-patches = ""

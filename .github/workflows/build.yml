@@ -60,13 +60,21 @@ jobs:
           echo "${DELIM}" >> "$GITHUB_OUTPUT"
           cp -f build.md build.tmp
 
+          yt_op=$(find build -maxdepth 1 -name "youtube-*-magisk-*.zip" -printf '%P\n')
+          yt_op=$(echo "$yt_op" | sed "s/youtube-revanced-magisk-//" | sed "s/-all.zip//")
+          if [ -z "$yt_op" ]; then
+            echo "RELEASE_NAME=ReVanced" >> $GITHUB_OUTPUT
+          else
+            echo "RELEASE_NAME=$yt_op" >> $GITHUB_OUTPUT
+          fi
+
       - name: Upload modules to release
         uses: svenstaro/upload-release-action@v2
         with:
           body: ${{ steps.get_output.outputs.BUILD_LOG }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ./build/*
-          release_name: ReVanced v${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
+          release_name: ReVanced ${{ steps.get_output.outputs.RELEASE_NAME }}
           tag: ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
           file_glob: true
           overwrite: true

@@ -1,18 +1,16 @@
 logging-to-file = true        # enables logging of every patch process to a seperate file
 enable-magisk-update = true   # set this to false if you do not want to receive updates for the module in magisk app
-build-mindetach-module = true
 patches-source = "inotia00/revanced-patches"
 integrations-source = "inotia00/revanced-integrations"
+cli-source = "inotia00/revanced-cli"
 
 # add 'enabled = false' for not patching a specific app or remove it from the config
 # see https://github.com/j-hc/revanced-magisk-module/blob/main/CONFIG.md for more detailed explanations
 
+# you can use rvmm-config-gen to generate a config
+
 [YouTube]
-patches-source = "inotia00/revanced-patches"
-integrations-source = "inotia00/revanced-integrations"
-cli-source = "inotia00/revanced-cli"
 build-mode = "both"
 apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube/"
-module-prop-name = "ytrv-mak-magisk"
-excluded-patches = "custom-branding-icon-revancify-blue custom-branding-youtube-name"
+excluded-patches = "'Custom branding YouTube name' 'Custom branding icon Revancify blue'"
 included-patches = ""

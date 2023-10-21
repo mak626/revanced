@@ -19,14 +19,12 @@ const checkPatch = async () => {
     (e) => e.name === "patches.json"
   )?.browser_download_url;
 
-  const convertToKebabCase = ({ name, ...data }) => ({
+  const convertToQuote = ({ name, ...data }) => ({
     ...data,
-    name: name.toLocaleLowerCase().split(" ").join("-"),
+    name: `'${name}'`,
   });
 
-  const patches = (await (await fetch(patch_url)).json()).map(
-    convertToKebabCase
-  );
+  const patches = (await (await fetch(patch_url)).json()).map(convertToQuote);
 
   const oldExclude = savePatches.exclude.sort();
   const oldInclude = savePatches.include.sort();

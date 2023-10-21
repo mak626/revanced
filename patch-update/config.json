@@ -3,7 +3,5 @@
         "custom-branding-youtube-name",
         "custom-branding-icon-revancify-blue"
     ],
-    "include": [
-        "force-premium-heading"
-    ]
+    "include": []
 }

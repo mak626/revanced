@@ -1,7 +1,6 @@
 {
     "exclude": [
-        "'Custom branding name YouTube'",
-        "'Custom branding icon Revancify Blue'"
+        "'Custom branding name YouTube'"
     ],
     "include": []
 }

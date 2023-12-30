@@ -10,7 +10,7 @@ cli-source = "inotia00/revanced-cli"
 # you can use rvmm-config-gen to generate a config
 
 [YouTube]
-build-mode = "both"
+arch = 'both'
 patches-source = "inotia00/revanced-patches"
 integrations-source = "inotia00/revanced-integrations"
 cli-source = "inotia00/revanced-cli"

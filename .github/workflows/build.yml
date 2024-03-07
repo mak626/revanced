@@ -60,10 +60,10 @@ jobs:
           echo "${DELIM}" >> "$GITHUB_OUTPUT"
           cp -f build.md build.tmp
 
-          yt_op=$(find build -maxdepth 1 -name "youtube-*-magisk-*.zip" -printf '%P\n')
-          yt_op=$(echo "$yt_op" | sed "s/youtube-revanced-magisk-//" | sed "s/-all.zip//")
+          yt_op=$(find build -maxdepth 1 -name "youtube-*-arm-v7a.apk" -printf '%P\n')
+          yt_op=$(echo $yt_op | sed "s/youtube-revanced-//" | sed "s/-arm-v7a.apk//")
           if [ -z "$yt_op" ]; then
-            echo "RELEASE_NAME=ReVanced" >> $GITHUB_OUTPUT
+            echo "RELEASE_NAME=Youtube" >> $GITHUB_OUTPUT
           else
             echo "RELEASE_NAME=$yt_op" >> $GITHUB_OUTPUT
           fi

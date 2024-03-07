@@ -41,48 +41,48 @@ jobs:
     outputs:
       SHOULD_BUILD: ${{ steps.should_build.outputs.SHOULD_BUILD }}
 
-config_check:
-    runs-on: ubuntu-latest
-    needs: check
-    if: ${{ needs.check.outputs.SHOULD_BUILD == 1 }}
-    env:
-      TG_TOKEN: ${{ secrets.TG_TOKEN }}
-      TG_CHAT: ${{ secrets.TG_CHAT }}
-      TG_DEV: ${{ secrets.TG_DEV }}
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v3
-        with:
-          cache: "npm"
+  config_check:
+      runs-on: ubuntu-latest
+      needs: check
+      if: ${{ needs.check.outputs.SHOULD_BUILD == 1 }}
+      env:
+        TG_TOKEN: ${{ secrets.TG_TOKEN }}
+        TG_CHAT: ${{ secrets.TG_CHAT }}
+        TG_DEV: ${{ secrets.TG_DEV }}
+      steps:
+        - uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
+        - uses: actions/setup-node@v3
+          with:
+            cache: "npm"
 
-      - name: Installing Node
-        run: npm ci
+        - name: Installing Node
+          run: npm ci
 
-      - name: Checking Config
-        run: npm run-script check
+        - name: Checking Config
+          run: npm run-script check
 
-      - name: On Failure
-        id: send_telegram_failure
-        if: ${{ failure() }}
-        run: |
-          POST="https://api.telegram.org/bot${TG_TOKEN}/sendMessage"
-          URL="[Failed Action]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
+        - name: On Failure
+          id: send_telegram_failure
+          if: ${{ failure() }}
+          run: |
+            POST="https://api.telegram.org/bot${TG_TOKEN}/sendMessage"
+            URL="[Failed Action]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)"
 
-          MSG="*Check patches config*
-          ${URL}"
+            MSG="*Check patches config*
+            ${URL}"
 
-          curl -X POST --data-urlencode "parse_mode=Markdown" --data-urlencode "text=${MSG}" --data-urlencode "chat_id=${TG_DEV}" "$POST" >/dev/null
-          echo "SHOULD_BUILD=0" >>$GITHUB_OUTPUT
+            curl -X POST --data-urlencode "parse_mode=Markdown" --data-urlencode "text=${MSG}" --data-urlencode "chat_id=${TG_DEV}" "$POST" >/dev/null
+            echo "SHOULD_BUILD=0" >>$GITHUB_OUTPUT
 
-      - name: On Success
-        id: config
-        shell: bash
-        run: echo "SHOULD_BUILD=1" >> $GITHUB_OUTPUT
+        - name: On Success
+          id: config
+          shell: bash
+          run: echo "SHOULD_BUILD=1" >> $GITHUB_OUTPUT
 
-    outputs:
-      SHOULD_BUILD: ${{ steps.config.outputs.SHOULD_BUILD }}
+      outputs:
+        SHOULD_BUILD: ${{ steps.config.outputs.SHOULD_BUILD }}
 
   build:
     permissions: write-all

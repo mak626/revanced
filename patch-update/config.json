@@ -1,9 +1,6 @@
 {
-    "exclude": [
-        "'Custom branding name YouTube'",
-        "'Custom branding icon YouTube'"
-    ],
+    "exclude": [],
     "include": [
-        "'Premium heading'"
+        "'Change header'"
     ]
 }

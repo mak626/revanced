@@ -2,7 +2,7 @@ const savePatches = require("./config.json");
 const fs = require("fs");
 const fetch = require("node-fetch");
 
-const AUTHOR = "inotia00";
+const AUTHOR = "ReVanced";
 
 const PATCH_API = `https://api.github.com/repos/${AUTHOR}/revanced-patches/releases/latest`;
 const YOUTUBE_PACKAGE_NAME = "com.google.android.youtube";
@@ -31,9 +31,8 @@ const checkPatch = async () => {
 
   let excludedPatches = [];
   let includedPatches = [];
-
   patches.forEach(({ use, name, compatiblePackages }) => {
-    if (compatiblePackages.find((e) => e.name == YOUTUBE_PACKAGE_NAME)) {
+    if (compatiblePackages?.find((e) => e.name == YOUTUBE_PACKAGE_NAME)) {
       if (use == false) excludedPatches.push(name);
       else includedPatches.push(name);
     }

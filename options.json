@@ -1,0 +1,11 @@
+[
+  {
+    "patchName": "Change header",
+    "options": [
+      {
+        "key": "header",
+        "value": "premium*header"
+      }
+    ]
+  }
+]

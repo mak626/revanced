@@ -7,6 +7,6 @@ enable-magisk-update = true   # set this to false if you do not want to receive 
 
 [YouTube]
 arch = 'both'
-apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube/"
+apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube" # fallback
 excluded-patches = ""
 included-patches = "'Change header'"

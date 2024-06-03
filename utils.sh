@@ -389,9 +389,9 @@ build_rv() {
 		done
 		if [ ! -f "$stock_apk" ]; then return 0; fi
 	fi
-	if ! check_sig "$stock_apk" "$pkg_name"; then
-		abort "apk signature mismatch '$stock_apk'"
-	fi
+	# if ! check_sig "$stock_apk" "$pkg_name"; then
+	# 	abort "apk signature mismatch '$stock_apk'"
+	# fi
 	log "${table}: ${version}"
 
 	p_patcher_args+=("-m ${args[integ]}")

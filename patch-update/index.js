@@ -2,29 +2,23 @@ const savePatches = require("./config.json");
 const fs = require("fs");
 const fetch = require("node-fetch");
 
-const AUTHOR = "ReVanced";
-
-const PATCH_API = `https://api.github.com/repos/${AUTHOR}/revanced-patches/releases/latest`;
+const VERSION_API = "https://api.revanced.app/v4/patches/version";
+const PATCH_API = `https://api.revanced.app/v4/patches/list`;
 const YOUTUBE_PACKAGE_NAME = "com.google.android.youtube";
 const CONFIG_PATH = "./config.toml";
 
 const checkPatch = async () => {
-  const repoDownload = await fetch(PATCH_API);
-
-  const json = await repoDownload.json();
-  console.log("VERSION:", json.name);
-  const errors = [`Patch Version: _${json.name}_`];
-
-  const patch_url = json.assets.find(
-    (e) => e.name === "patches.json"
-  )?.browser_download_url;
+  const patchVersion = await fetch(VERSION_API);
+  const version = (await patchVersion.json()).version;
+  console.log("VERSION:", version);
+  const errors = [`Patch Version: _${version}_`];
 
   const convertToQuote = ({ name, ...data }) => ({
     ...data,
     name: `'${name}'`,
   });
 
-  const patches = (await (await fetch(patch_url)).json()).map(convertToQuote);
+  const patches = (await (await fetch(PATCH_API)).json()).map(convertToQuote);
 
   const oldExclude = savePatches.exclude.sort();
   const oldInclude = savePatches.include.sort();
@@ -32,7 +26,10 @@ const checkPatch = async () => {
   let excludedPatches = [];
   let includedPatches = [];
   patches.forEach(({ use, name, compatiblePackages }) => {
-    if (compatiblePackages?.find((e) => e.name == YOUTUBE_PACKAGE_NAME)) {
+    if (
+      compatiblePackages &&
+      Object.hasOwn(compatiblePackages, YOUTUBE_PACKAGE_NAME)
+    ) {
       if (use == false) excludedPatches.push(name);
       else includedPatches.push(name);
     }
